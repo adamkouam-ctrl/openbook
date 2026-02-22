@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Innolab AI — Luna Voice | Le moteur de revenus propulsé par l'IA</title>
+<meta name="description" content="Luna Voice gère vos réservations, relance vos clients et automatise votre pipeline 24/7 — pendant que vous soignez vos patients."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+/* ═══════════════════════════════════════════════
+   INNOLAB AI — LUNA VOICE
+   Dark editorial × luxury AI  |  Single file
+   Cormorant Garamond + Outfit
+═══════════════════════════════════════════════ */
+
+:root {
+  --bg:      #070706;
+  --surf:    #0f0f0e;
+  --s2:      #161614;
+  --s3:      #1e1e1c;
+  --s4:      #252522;
+  --green:   #c2f23a;
+  --green2:  #d6ff55;
+  --glow:    rgba(194,242,58,.13);
+  --glow2:   rgba(194,242,58,.06);
+  --glow3:   rgba(194,242,58,.03);
+  --white:   #f0ede4;
+  --m1:      rgba(240,237,228,.50);
+  --m2:      rgba(240,237,228,.22);
+  --m3:      rgba(240,237,228,.10);
+  --b1:      rgba(240,237,228,.07);
+  --b2:      rgba(194,242,58,.20);
+  --b3:      rgba(194,242,58,.40);
+  --r:       12px;
+  --rL:      20px;
+}
+
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;font-size:16px}
+body{
+  background:var(--bg);
+  color:var(--white);
+  font-family:'Outfit',sans-serif;
+  font-weight:400;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+  cursor:none;
+}
+
+/* ── NOISE ── */
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.035'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:9000;opacity:.7;
+}
+
+/* ── CURSOR ── */
+#cur,#cur-ring{position:fixed;pointer-events:none;border-radius:50%;z-index:9900;transform:translate(-50%,-50%)}
+#cur{width:9px;height:9px;background:var(--green);mix-blend-mode:difference;transition:width .3s,height .3s}
+#cur-ring{width:38px;height:38px;border:1.5px solid rgba(194,242,58,.45);transition:width .3s,height .3s,border-color .3s}
+.c-xl #cur{width:18px;height:18px}
+.c-xl #cur-ring{width:58px;height:58px;border-color:rgba(194,242,58,.7)}
+
+/* ── NAV ── */
+#nav{
+  position:fixed;inset:0 0 auto;z-index:800;
+  height:70px;padding:0 52px;
+  display:flex;align-items:center;justify-content:space-between;
+  transition:background .5s,border-color .5s;
+}
+#nav.solid{
+  background:rgba(7,7,6,.93);
+  backdrop-filter:blur(28px);
+  border-bottom:1px solid var(--b1);
+}
+.n-logo{
+  font-family:'Outfit',sans-serif;font-weight:700;
+  font-size:.92rem;letter-spacing:.16em;text-transform:uppercase;
+  text-decoration:none;color:var(--white);
+}
+.n-logo b{color:var(--green);font-weight:700}
+.n-links{display:flex;gap:2.4rem;list-style:none;align-items:center}
+.n-links a{
+  color:var(--m1);text-decoration:none;font-size:.78rem;
+  font-weight:500;letter-spacing:.06em;text-transform:uppercase;
+  transition:color .2s;
+}
+.n-links a:hover{color:var(--white)}
+.n-cta{
+  font-size:.77rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
+  text-decoration:none;color:var(--bg);
+  background:var(--green);padding:.58rem 1.4rem;border-radius:100px;
+  transition:transform .2s,box-shadow .3s;
+}
+.n-cta:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(194,242,58,.38)}
+.n-burger{
+  display:none;background:none;border:1px solid var(--b1);
+  color:var(--white);width:40px;height:40px;border-radius:8px;
+  font-size:1rem;cursor:none;align-items:center;justify-content:center;
+}
+
+/* ── HERO ── */
+#hero{
+  min-height:100vh;display:flex;align-items:center;justify-content:center;
+  text-align:center;padding:140px 48px 100px;
+  position:relative;overflow:hidden;
+}
+.orb{position:absolute;border-radius:50%;filter:blur(110px);pointer-events:none}
+.o1{width:700px;height:700px;background:radial-gradient(circle,rgba(194,242,58,.16) 0%,transparent 65%);top:-260px;right:-180px;animation:drift 14s ease-in-out infinite}
+.o2{width:450px;height:450px;background:radial-gradient(circle,rgba(194,242,58,.09) 0%,transparent 65%);bottom:-60px;left:-130px;animation:drift 18s ease-in-out infinite reverse}
+.o3{width:240px;height:240px;background:radial-gradient(circle,rgba(194,242,58,.07) 0%,transparent 65%);top:38%;left:8%;animation:drift 10s ease-in-out infinite 4s}
+@keyframes drift{
+  0%,100%{transform:translate(0,0) scale(1)}
+  33%{transform:translate(28px,-24px) scale(1.04)}
+  66%{transform:translate(-22px,16px) scale(.97)}
+}
+.h-grid{
+  position:absolute;inset:0;
+  background-image:linear-gradient(rgba(240,237,228,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(240,237,228,.035) 1px,transparent 1px);
+  background-size:72px 72px;
+  mask-image:radial-gradient(ellipse 80% 80% at center,black 10%,transparent 80%);
+}
+.h-inner{position:relative;z-index:2;max-width:940px;margin:0 auto}
+
+.h-pill{
+  display:inline-flex;align-items:center;gap:9px;
+  border:1px solid var(--b2);background:var(--glow2);color:var(--green);
+  font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;
+  padding:.42rem 1.1rem;border-radius:100px;margin-bottom:2.8rem;
+  animation:fadeUp .8s ease both;
+}
+.h-dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse-dot 2.2s ease infinite}
+@keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.7)}}
+
+.h-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(4rem,11vw,9rem);
+  font-weight:300;line-height:.9;letter-spacing:-.025em;
+  margin-bottom:2.2rem;
+  animation:fadeUp .95s ease .1s both;
+}
+.h-title strong{font-weight:600;font-style:italic;color:var(--green);display:block}
+.h-title span{display:block}
+
+.h-sub{
+  font-size:clamp(.95rem,1.8vw,1.15rem);color:var(--m1);
+  font-weight:300;line-height:1.8;max-width:600px;
+  margin:0 auto 3rem;animation:fadeUp .95s ease .2s both;
+}
+
+.h-btns{
+  display:flex;align-items:center;justify-content:center;gap:1rem;
+  flex-wrap:wrap;margin-bottom:5rem;
+  animation:fadeUp .95s ease .3s both;
+}
+.btn-p{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--green);color:var(--bg);font-family:'Outfit',sans-serif;
+  font-weight:700;font-size:.84rem;letter-spacing:.06em;text-transform:uppercase;
+  text-decoration:none;padding:1rem 2.2rem;border-radius:8px;border:none;
+  cursor:none;transition:transform .25s,box-shadow .3s;
+}
+.btn-p:hover{transform:translateY(-3px);box-shadow:0 18px 52px rgba(194,242,58,.42)}
+.btn-o{
+  display:inline-flex;align-items:center;gap:8px;color:var(--white);
+  font-family:'Outfit',sans-serif;font-weight:500;font-size:.84rem;
+  letter-spacing:.04em;text-decoration:none;padding:1rem 1.9rem;
+  border-radius:8px;border:1px solid var(--b1);transition:border-color .2s,background .2s;
+}
+.btn-o:hover{border-color:var(--b2);background:var(--glow2)}
+
+.h-stats{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  border:1px solid var(--b1);border-radius:var(--r);
+  overflow:hidden;background:var(--surf);
+  animation:fadeUp .95s ease .42s both;
+}
+.hs{
+  padding:2rem;text-align:center;border-right:1px solid var(--b1);
+  transition:background .25s;
+}
+.hs:last-child{border-right:none}
+.hs:hover{background:var(--s2)}
+.hs-n{
+  font-family:'Cormorant Garamond',serif;font-size:3rem;
+  font-weight:300;color:var(--green);line-height:1;display:block;
+}
+.hs-l{
+  font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--m1);display:block;margin-top:6px;
+}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+
+/* ── TICKER ── */
+.ticker{overflow:hidden;border-top:1px solid var(--b1);border-bottom:1px solid var(--b1);padding:13px 0;background:var(--surf)}
+.ticker-t{
+  display:flex;gap:3rem;white-space:nowrap;
+  animation:tickAnim 30s linear infinite;
+}
+.ticker-t:hover{animation-play-state:paused}
+.ticker-t span{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--m2);flex-shrink:0}
+.ticker-t span em{color:var(--green);font-style:normal;margin:0 .5rem}
+@keyframes tickAnim{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ── SHARED ── */
+.sec{padding:110px 52px;max-width:1340px;margin:0 auto}
+.s-tag{
+  font-size:.67rem;letter-spacing:.28em;text-transform:uppercase;color:var(--green);
+  display:flex;align-items:center;gap:10px;margin-bottom:1.1rem;
+}
+.s-tag::before{content:'';display:block;width:26px;height:1px;background:var(--green)}
+.s-h{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.2rem,4.5vw,3.8rem);
+  font-weight:300;line-height:1.05;margin-bottom:1rem;
+}
+.s-h em{font-style:italic;color:var(--green)}
+.s-sub{font-size:.95rem;color:var(--m1);font-weight:300;line-height:1.8;max-width:500px}
+
+/* ── FEATURES ── */
+.feat-hd{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:4rem;align-items:end;margin-bottom:4.5rem;
+}
+.feat-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:2px;background:var(--b1);
+  border:1px solid var(--b1);border-radius:var(--rL);overflow:hidden;
+}
+.fc{
+  background:var(--surf);padding:2.6rem;
+  position:relative;overflow:hidden;transition:background .3s;
+}
+.fc::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,var(--glow) 0%,transparent 60%);
+  opacity:0;transition:opacity .35s;
+}
+.fc:hover{background:var(--s2)}
+.fc:hover::after{opacity:1}
+.fc.wide{grid-column:span 2}
+.fc-ico{
+  width:44px;height:44px;border-radius:10px;
+  background:var(--glow);border:1px solid var(--b2);
+  display:grid;place-items:center;font-size:1.15rem;
+  margin-bottom:1.6rem;position:relative;z-index:1;
+}
+.fc h3{
+  font-family:'Cormorant Garamond',serif;font-size:1.4rem;
+  font-weight:400;margin-bottom:.7rem;position:relative;z-index:1;
+}
+.fc p{font-size:.85rem;color:var(--m1);line-height:1.78;position:relative;z-index:1}
+.fc-n{
+  position:absolute;bottom:1.6rem;right:2rem;
+  font-family:'Cormorant Garamond',serif;font-size:3.8rem;
+  font-weight:300;color:var(--m3);line-height:1;user-select:none;
+}
+.fc-pills{
+  display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;
+  margin-top:1.4rem;padding-top:1.4rem;
+  border-top:1px solid var(--b1);position:relative;z-index:1;
+}
+.pill{
+  background:var(--glow);border:1px solid var(--b2);color:var(--green);
+  font-size:.68rem;letter-spacing:.09em;padding:.28rem .8rem;border-radius:100px;
+}
+
+/* ── HOW ── */
+.how-wrap{background:var(--surf);padding:0;max-width:100%}
+.how-in{max-width:1340px;margin:0 auto;padding:110px 52px}
+.how-hd{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:4rem;align-items:end;margin-bottom:4.5rem;
+}
+.steps-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  border:1px solid var(--b1);border-radius:var(--r);overflow:hidden;
+  margin-bottom:3rem;
+}
+.step{
+  padding:2.4rem 2rem;border-right:1px solid var(--b1);
+  transition:background .3s;position:relative;overflow:hidden;
+}
+.step:last-child{border-right:none}
+.step:hover{background:var(--s3)}
+.step::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:var(--green);transform:scaleX(0);transform-origin:left;
+  transition:transform .4s ease;
+}
+.step:hover::before{transform:scaleX(1)}
+.sn{
+  font-family:'Cormorant Garamond',serif;font-size:3.2rem;
+  font-weight:300;color:var(--m3);line-height:1;
+  display:block;margin-bottom:1rem;
+}
+.sl{width:28px;height:2px;background:var(--green);margin-bottom:1rem}
+.step h3{font-family:'Cormorant Garamond',serif;font-size:1.28rem;font-weight:400;margin-bottom:.65rem}
+.step p{font-size:.82rem;color:var(--m1);line-height:1.75}
+
+.flow{
+  display:grid;grid-template-columns:1fr auto 1fr auto 1fr;
+  align-items:center;text-align:center;
+  border:1px solid var(--b1);border-radius:var(--r);
+  padding:2.8rem 2rem;background:var(--s2);margin-bottom:3rem;
+}
+.fv-node{display:flex;flex-direction:column;align-items:center;gap:.9rem}
+.fv-circle{
+  width:70px;height:70px;border-radius:50%;
+  border:1px solid var(--b2);background:var(--glow2);
+  display:grid;place-items:center;font-size:1.35rem;position:relative;
+}
+.fv-circle::after{
+  content:'';position:absolute;inset:-7px;border-radius:50%;
+  border:1px dashed var(--b2);animation:spin 10s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+.fv-lbl{font-size:.75rem;color:var(--m1);letter-spacing:.06em}
+.fv-arr{font-size:1.3rem;color:var(--green);opacity:.55;padding:0 .8rem}
+
+.tagline-block{
+  background:linear-gradient(140deg,#090d01 0%,#0d1800 50%,#090d01 100%);
+  border:1px solid var(--b2);border-radius:var(--rL);
+  padding:4rem;text-align:center;position:relative;overflow:hidden;
+}
+.tagline-block::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at center,rgba(194,242,58,.08) 0%,transparent 65%);
+}
+.tb-main{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3.8vw,3rem);font-weight:300;position:relative}
+.tb-em{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3.8vw,3rem);font-weight:600;font-style:italic;color:var(--green);position:relative;display:block;margin-bottom:1.2rem}
+.tb-sub{font-size:.95rem;color:var(--m1);font-weight:300;position:relative}
+
+/* ── SERVICES ── */
+.svc-list{
+  border:1px solid var(--b1);border-radius:var(--rL);
+  overflow:hidden;margin-top:1rem;
+}
+.svc-row{
+  display:grid;grid-template-columns:88px 1fr 48px;
+  align-items:center;gap:2rem;padding:2.2rem 2.5rem;
+  border-bottom:1px solid var(--b1);
+  transition:background .3s;cursor:default;
+}
+.svc-row:last-child{border-bottom:none}
+.svc-row:hover{background:var(--surf)}
+.svc-row:hover .svc-arr{color:var(--green);transform:translate(3px,-3px)}
+.svc-left{display:flex;flex-direction:column;align-items:center;gap:5px}
+.svc-n{
+  font-family:'Cormorant Garamond',serif;font-size:2rem;
+  font-weight:300;color:var(--m3);line-height:1;
+}
+.svc-ico{font-size:1.3rem}
+.svc-row h3{font-family:'Cormorant Garamond',serif;font-size:1.45rem;font-weight:400;margin-bottom:.45rem}
+.svc-row p{font-size:.84rem;color:var(--m1);line-height:1.75}
+.svc-arr{font-size:1.4rem;color:var(--m2);transition:color .3s,transform .3s;justify-self:center}
+
+/* ── PRICING ── */
+.price-hd{text-align:center;margin-bottom:3.5rem}
+.price-hd .s-tag{justify-content:center}
+.price-hd .s-tag::before{display:none}
+.price-hd .s-sub{max-width:580px;margin:0 auto}
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:2rem}
+.pc{
+  background:var(--surf);border:1px solid var(--b1);
+  border-radius:var(--r);padding:2.4rem;
+  position:relative;overflow:hidden;
+  transition:border-color .3s,transform .3s;
+}
+.pc:hover{border-color:var(--b2);transform:translateY(-5px)}
+.pc.hot{
+  border-color:var(--b2);
+  background:linear-gradient(155deg,var(--s2) 0%,rgba(194,242,58,.05) 100%);
+}
+.pc.hot::after{
+  content:'Populaire';position:absolute;top:1.1rem;right:1.1rem;
+  background:var(--green);color:var(--bg);
+  font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  padding:.28rem .7rem;border-radius:100px;
+}
+.p-plan{font-size:.67rem;letter-spacing:.22em;text-transform:uppercase;color:var(--m2);display:block;margin-bottom:1.4rem}
+.p-amt{font-family:'Cormorant Garamond',serif;font-size:3.6rem;font-weight:300;line-height:1;margin-bottom:.35rem}
+.p-amt sup{font-size:1.4rem;vertical-align:top;margin-top:.65rem;display:inline-block}
+.p-amt small{font-size:.95rem;color:var(--m1);font-family:'Outfit',sans-serif}
+.p-desc{font-size:.83rem;color:var(--m1);line-height:1.65;margin-bottom:1.8rem}
+.p-div{height:1px;background:var(--b1);margin-bottom:1.8rem}
+.p-feats{list-style:none;display:flex;flex-direction:column;gap:.8rem;margin-bottom:2.4rem}
+.p-feats li{display:flex;align-items:flex-start;gap:10px;font-size:.84rem;color:var(--m1)}
+.p-feats li::before{content:'✓';color:var(--green);font-weight:700;flex-shrink:0;margin-top:1px}
+.p-btn{
+  display:block;text-align:center;padding:.88rem;border-radius:8px;
+  font-family:'Outfit',sans-serif;font-weight:600;font-size:.82rem;
+  letter-spacing:.06em;text-transform:uppercase;text-decoration:none;
+  cursor:none;transition:transform .2s,box-shadow .25s;
+}
+.p-btn-o{border:1px solid var(--b1);color:var(--white)}
+.p-btn-o:hover{border-color:var(--b2);background:var(--glow2)}
+.p-btn-s{background:var(--green);color:var(--bg)}
+.p-btn-s:hover{transform:translateY(-2px);box-shadow:0 10px 32px rgba(194,242,58,.38)}
+.g-band{
+  display:flex;align-items:center;gap:2rem;
+  background:var(--s2);border:1px solid var(--b2);
+  border-radius:var(--r);padding:2rem 2.4rem;
+}
+.g-ico{font-size:2.4rem;flex-shrink:0}
+.g-band strong{display:block;font-size:1.05rem;margin-bottom:.35rem;color:var(--white)}
+.g-band p{font-size:.84rem;color:var(--m1);line-height:1.65}
+
+/* ── TESTIMONIALS ── */
+.t-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.tc{
+  background:var(--surf);border:1px solid var(--b1);
+  border-radius:var(--r);padding:2.4rem;
+  transition:border-color .3s;
+}
+.tc:hover{border-color:var(--b2)}
+.t-stars{display:flex;gap:3px;margin-bottom:1.4rem}
+.t-stars span{color:var(--green);font-size:.88rem}
+.t-q{
+  font-family:'Cormorant Garamond',serif;font-size:1.28rem;
+  font-weight:300;font-style:italic;line-height:1.6;
+  color:var(--white);margin-bottom:1.8rem;
+}
+.t-author{display:flex;align-items:center;gap:.9rem}
+.t-av{
+  width:42px;height:42px;border-radius:50%;
+  background:var(--glow);border:1px solid var(--b2);
+  display:grid;place-items:center;font-size:1rem;flex-shrink:0;
+}
+.t-name{font-weight:600;font-size:.88rem}
+.t-role{font-size:.75rem;color:var(--m1);margin-top:2px}
+.tc.wide{
+  grid-column:span 2;display:grid;
+  grid-template-columns:1fr auto;align-items:center;gap:3rem;
+  background:linear-gradient(135deg,var(--s2),rgba(194,242,58,.04));
+  border-color:var(--b2);
+}
+.tc.wide .t-q{font-size:1.5rem;margin-bottom:0}
+.tc.wide .t-author{flex-direction:column;align-items:flex-end;text-align:right;min-width:150px}
+.tc.wide .t-av{width:50px;height:50px;font-size:1.2rem}
+
+/* ── FOOTER TICKER ── */
+.ft{
+  overflow:hidden;border-top:1px solid var(--b1);
+  border-bottom:1px solid var(--b1);padding:18px 0;background:var(--surf);
+}
+.ft-t{
+  display:flex;gap:4.5rem;white-space:nowrap;
+  animation:tickAnim 24s linear infinite;
+}
+.ft-t:hover{animation-play-state:paused}
+.ft-t span{
+  font-family:'Cormorant Garamond',serif;font-size:1.55rem;
+  font-weight:300;font-style:italic;color:var(--m2);flex-shrink:0;
+}
+.ft-t span em{color:var(--green);font-style:italic}
+
+/* ── CONTACT ── */
+.contact-wrap{
+  display:grid;grid-template-columns:1fr 1.15fr;
+  gap:6rem;align-items:start;
+}
+.c-intro{font-size:.92rem;color:var(--m1);line-height:1.85;margin-bottom:2.4rem}
+.c-links{display:flex;flex-direction:column;gap:.85rem;margin-bottom:2.4rem}
+.c-link{
+  display:flex;align-items:center;gap:1rem;
+  color:var(--white);text-decoration:none;padding:.95rem 1.2rem;
+  border:1px solid var(--b1);border-radius:10px;
+  transition:border-color .2s,background .2s,transform .2s;
+}
+.c-link:hover{border-color:var(--b2);background:var(--glow2);transform:translateX(4px)}
+.c-ico{
+  width:38px;height:38px;border-radius:8px;
+  background:var(--glow);border:1px solid var(--b2);
+  display:grid;place-items:center;font-size:.95rem;flex-shrink:0;
+}
+.c-lbl{font-size:.66rem;color:var(--m1);letter-spacing:.12em;text-transform:uppercase}
+.c-val{font-weight:500;font-size:.9rem}
+.obj-box{
+  background:var(--surf);border:1px solid var(--b1);
+  border-radius:var(--r);padding:1.6rem;
+}
+.obj-t{font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--green);margin-bottom:1rem}
+.obj-item{padding:.9rem 0;border-bottom:1px solid var(--b1)}
+.obj-item:last-child{border-bottom:none;padding-bottom:0}
+.obj-q{display:block;font-size:.86rem;font-weight:600;color:var(--white);margin-bottom:.35rem}
+.obj-a{display:block;font-size:.8rem;color:var(--m1);line-height:1.7}
+.form-box{
+  background:var(--surf);border:1px solid var(--b1);
+  border-radius:var(--rL);padding:2.6rem;
+}
+.form-ttl{font-family:'Cormorant Garamond',serif;font-size:1.65rem;font-weight:300;margin-bottom:2rem}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.field{display:flex;flex-direction:column;gap:6px}
+.field.full{grid-column:span 2}
+.field label{font-size:.67rem;letter-spacing:.14em;text-transform:uppercase;color:var(--m1)}
+.field input,.field textarea{
+  background:var(--s2);border:1px solid var(--b1);border-radius:8px;
+  padding:.85rem 1rem;color:var(--white);font-family:'Outfit',sans-serif;
+  font-size:.9rem;outline:none;resize:vertical;
+  transition:border-color .2s,box-shadow .2s;cursor:none;
+}
+.field input:focus,.field textarea:focus{
+  border-color:var(--b2);box-shadow:0 0 0 3px rgba(194,242,58,.07);
+}
+.field input::placeholder,.field textarea::placeholder{color:var(--m2)}
+.f-submit{
+  width:100%;margin-top:1.5rem;padding:1.05rem;
+  background:var(--green);color:var(--bg);border:none;border-radius:8px;
+  font-family:'Outfit',sans-serif;font-weight:700;font-size:.86rem;
+  letter-spacing:.07em;text-transform:uppercase;cursor:none;
+  transition:transform .2s,box-shadow .3s;
+}
+.f-submit:hover{transform:translateY(-2px);box-shadow:0 12px 38px rgba(194,242,58,.38)}
+.f-ok{
+  display:none;margin-top:1rem;padding:1rem;
+  background:var(--glow);border:1px solid var(--b2);
+  border-radius:8px;color:var(--green);font-size:.86rem;text-align:center;
+}
+
+/* ── FOOTER ── */
+footer{
+  border-top:1px solid var(--b1);
+  padding:2.5rem 52px;
+}
+.footer-in{
+  max-width:1340px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:1.5rem;
+}
+.f-logo{
+  font-family:'Outfit',sans-serif;font-weight:700;
+  letter-spacing:.15em;font-size:.9rem;color:var(--white);
+  text-decoration:none;text-transform:uppercase;
+}
+.f-logo b{color:var(--green)}
+.f-nav{display:flex;gap:2rem}
+.f-nav a{color:var(--m1);text-decoration:none;font-size:.78rem;letter-spacing:.04em;transition:color .2s}
+.f-nav a:hover{color:var(--white)}
+.f-contact{display:flex;align-items:center;gap:.7rem;font-size:.78rem}
+.f-contact a{color:var(--m1);text-decoration:none;transition:color .2s}
+.f-contact a:hover{color:var(--green)}
+.f-contact span{color:var(--m3)}
+.f-copy{font-size:.72rem;color:var(--m2);width:100%;text-align:center;margin-top:.5rem}
+
+/* ── REVEAL ── */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.rv.in{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1100px){
+  .sec,.how-in{padding:80px 32px}
+  .feat-hd,.how-hd{grid-template-columns:1fr;gap:2rem}
+  .feat-grid{grid-template-columns:1fr 1fr}
+  .fc.wide{grid-column:span 2}
+  .steps-grid{grid-template-columns:1fr 1fr}
+  .step{border-bottom:1px solid var(--b1)}
+  .step:nth-child(2n){border-right:none}
+  .step:last-child{border-bottom:none}
+  .price-grid{grid-template-columns:1fr 1fr}
+  .t-grid{grid-template-columns:1fr}
+  .tc.wide{grid-column:1;grid-template-columns:1fr}
+  .tc.wide .t-author{flex-direction:row;text-align:left;align-items:center}
+  .contact-wrap{grid-template-columns:1fr;gap:3rem}
+  .flow{grid-template-columns:1fr;gap:2rem;padding:2rem}
+  .fv-arr{display:none}
+}
+@media(max-width:768px){
+  .n-links{display:none}
+  .n-cta{display:none}
+  .n-burger{display:flex}
+  #nav.open .n-links{
+    display:flex;flex-direction:column;position:fixed;
+    inset:70px 0 0;background:rgba(7,7,6,.97);
+    padding:3rem 32px;gap:2rem;z-index:799;backdrop-filter:blur(28px);
+  }
+  #nav.open .n-links a{font-size:1.15rem}
+  #nav.open .n-cta{display:block}
+  .h-title{font-size:clamp(3rem,13vw,5.5rem)}
+  .feat-grid{grid-template-columns:1fr}
+  .fc.wide{grid-column:1}
+  .steps-grid{grid-template-columns:1fr}
+  .step{border-right:none}
+  .price-grid{grid-template-columns:1fr}
+  .svc-row{grid-template-columns:60px 1fr 36px;gap:1rem;padding:1.8rem 1.5rem}
+  .form-grid{grid-template-columns:1fr}
+  .field.full{grid-column:1}
+  footer{padding:2.5rem 20px}
+  .footer-in{flex-direction:column;align-items:flex-start}
+  .g-band{flex-direction:column;text-align:center}
+  .tagline-block{padding:2.5rem 1.5rem}
+}
+</style>
+</head>
+<body>
+
+<div id="cur"></div>
+<div id="cur-ring"></div>
+
+<!-- ══ NAV ══ -->
+<nav id="nav">
+  <a href="#" class="n-logo">Innolab <b>AI</b></a>
+  <ul class="n-links" id="nLinks">
+    <li><a href="#features">Fonctionnalités</a></li>
+    <li><a href="#how">Processus</a></li>
+    <li><a href="#pricing">Tarifs</a></li>
+    <li><a href="#testimonials">Avis</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="n-cta">Réserver une démo</a>
+  <button class="n-burger" id="burger">☰</button>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section id="hero">
+  <div class="o1 orb"></div>
+  <div class="o2 orb"></div>
+  <div class="o3 orb"></div>
+  <div class="h-grid"></div>
+  <div class="h-inner">
+
+    <div class="h-pill"><span class="h-dot"></span>Agent IA — Disponible 24h/24 · 7j/7</div>
+
+    <h1 class="h-title">
+      <span>Votre cabinet perd</span>
+      <strong>des patients</strong>
+      <span>pendant que vous dormez.</span>
+    </h1>
+
+    <p class="h-sub">Chaque appel sans réponse = un patient chez votre concurrent. Luna Voice répond à votre place — en moins de 30 secondes, professionnellement, sans jamais se tromper.</p>
+
+    <div class="h-btns">
+      <a href="#contact" class="btn-p">Réserver une démo gratuite →</a>
+      <a href="#how" class="btn-o">Comment ça marche</a>
+    </div>
+
+    <div class="h-stats rv">
+      <div class="hs"><span class="hs-n">24/7</span><span class="hs-l">Disponibilité totale</span></div>
+      <div class="hs"><span class="hs-n">80%</span><span class="hs-l">Réduction coûts admin</span></div>
+      <div class="hs"><span class="hs-n">&lt;30j</span><span class="hs-l">Premiers résultats</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- Ticker -->
+<div class="ticker">
+  <div class="ticker-t">
+    <span>Connexion instantanée <em>✦</em></span><span>Zéro appel manqué <em>✦</em></span>
+    <span>Relance clients auto <em>✦</em></span><span>Paiements confirmés <em>✦</em></span>
+    <span>Agenda toujours plein <em>✦</em></span><span>No-shows réduits de 70% <em>✦</em></span>
+    <span>Communication professionnelle <em>✦</em></span><span>Multi-patients simultanés <em>✦</em></span>
+    <span>Connexion instantanée <em>✦</em></span><span>Zéro appel manqué <em>✦</em></span>
+    <span>Relance clients auto <em>✦</em></span><span>Paiements confirmés <em>✦</em></span>
+    <span>Agenda toujours plein <em>✦</em></span><span>No-shows réduits de 70% <em>✦</em></span>
+    <span>Communication professionnelle <em>✦</em></span><span>Multi-patients simultanés <em>✦</em></span>
+  </div>
+</div>
+
+<!-- ══ FEATURES ══ -->
+<section class="sec" id="features">
+  <div class="feat-hd">
+    <div>
+      <div class="s-tag">Luna Voice — 6 Fonctionnalités</div>
+      <h2 class="s-h">Un système qui fait<br /><em>le travail de 5.</em></h2>
+    </div>
+    <p class="s-sub">Luna est formée pour représenter votre cabinet avec la chaleur et l'élégance qui construisent la confiance — comme une assistante de prestige, disponible en permanence.</p>
+  </div>
+
+  <div class="feat-grid">
+    <div class="fc wide rv">
+      <div class="fc-ico">⚡</div>
+      <h3>Connexion instantanée avec de nouveaux clients</h3>
+      <p>Le premier cabinet à répondre obtient le patient. Luna répond en moins de 30 secondes — même à 2h du matin, même le dimanche. Chaque nouveau contact devient une opportunité convertie automatiquement.</p>
+      <div class="fc-pills">
+        <span class="pill">Répond en &lt;30 secondes</span>
+        <span class="pill">Qualification automatique</span>
+        <span class="pill">Disponible 24/7</span>
+      </div>
+      <span class="fc-n">01</span>
+    </div>
+
+    <div class="fc rv d1">
+      <div class="fc-ico">🔔</div>
+      <h3>Rappels & Relances automatiques</h3>
+      <p>Les no-shows coûtent jusqu'à 25% de votre chiffre d'affaires. Luna envoie des rappels intelligents J-2, J-1 et H-2 — et réduit vos absences de 70%.</p>
+      <span class="fc-n">02</span>
+    </div>
+
+    <div class="fc rv d2">
+      <div class="fc-ico">🤝</div>
+      <h3>Communication professionnelle</h3>
+      <p>Ton adapté à chaque patient — en français, arabe ou darija. Votre marque, votre voix — protégée et cohérente à chaque interaction.</p>
+      <span class="fc-n">03</span>
+    </div>
+
+    <div class="fc rv d1">
+      <div class="fc-ico">📅</div>
+      <h3>Agenda automatique</h3>
+      <p>Luna consulte votre calendrier en temps réel, propose des créneaux, confirme les RDV et gère les reports — sans jamais vous déranger.</p>
+      <span class="fc-n">04</span>
+    </div>
+
+    <div class="fc rv d2">
+      <div class="fc-ico">💳</div>
+      <h3>Offres & Paiements</h3>
+      <p>Présente vos offres naturellement et accompagne le patient jusqu'à la confirmation du paiement. Moins de friction, plus de conversions.</p>
+      <span class="fc-n">05</span>
+    </div>
+
+    <div class="fc wide rv">
+      <div class="fc-ico">👥</div>
+      <h3>Multi-clients & Réactivation d'anciens patients</h3>
+      <p>Luna gère des dizaines de conversations simultanément sans jamais se tromper. Elle réactive proactivement vos patients inactifs depuis 3, 6 ou 12 mois avec des messages personnalisés qui font revenir — et font rentrer du CA sans aucun effort de votre part.</p>
+      <div class="fc-pills">
+        <span class="pill">Conversations illimitées simultanées</span>
+        <span class="pill">Réactivation ciblée</span>
+        <span class="pill">Dashboard temps réel</span>
+      </div>
+      <span class="fc-n">06</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══ HOW IT WORKS ══ -->
+<div class="how-wrap">
+  <div class="how-in">
+    <div class="how-hd">
+      <div>
+        <div class="s-tag">Processus — 4 étapes</div>
+        <h2 class="s-h">Opérationnel en<br /><em>48 heures.</em></h2>
+      </div>
+      <p class="s-sub">Vous n'avez rien à faire. Notre équipe configure tout, vous forme en 30 minutes, et Luna commence à travailler immédiatement. Résultats visibles en moins de 30 jours — ou on rembourse.</p>
+    </div>
+
+    <div class="steps-grid">
+      <div class="step rv">
+        <span class="sn">01</span><div class="sl"></div>
+        <h3>Audit & Configuration</h3>
+        <p>Nous analysons votre flux de travail et configurons Luna selon votre activité médicale. Aucune compétence technique requise de votre côté.</p>
+      </div>
+      <div class="step rv d1">
+        <span class="sn">02</span><div class="sl"></div>
+        <h3>Déploiement en 48h</h3>
+        <p>Luna est activée et commence à répondre à vos appels et messages. Vous êtes notifié de chaque interaction importante.</p>
+      </div>
+      <div class="step rv d2">
+        <span class="sn">03</span><div class="sl"></div>
+        <h3>Croissance automatique</h3>
+        <p>Votre pipeline grossit pendant que vous soignez vos patients. Luna relance, confirme, planifie — sans vous déranger.</p>
+      </div>
+      <div class="step rv d3">
+        <span class="sn">04</span><div class="sl"></div>
+        <h3>Optimisation continue</h3>
+        <p>Rapports mensuels, ajustements continus et amélioration permanente des performances. Vous voyez exactement ce que Luna génère.</p>
+      </div>
+    </div>
+
+    <div class="flow rv">
+      <div class="fv-node">
+        <div class="fv-circle">📞</div>
+        <span class="fv-lbl">Patient appelle ou écrit</span>
+      </div>
+      <div class="fv-arr">→</div>
+      <div class="fv-node">
+        <div class="fv-circle">🤖</div>
+        <span class="fv-lbl">Luna répond en &lt;30s</span>
+      </div>
+      <div class="fv-arr">→</div>
+      <div class="fv-node">
+        <div class="fv-circle">✅</div>
+        <span class="fv-lbl">RDV confirmé & payé</span>
+      </div>
+    </div>
+
+    <div class="tagline-block rv">
+      <p class="tb-main">Nous gérons les réservations.</p>
+      <span class="tb-em">Vous prenez soin de vos patients.</span>
+      <p class="tb-sub">Offrez à chaque patient une réponse instantanée et renforcez la confiance.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SERVICES ══ -->
+<section class="sec" id="services">
+  <div class="s-tag">L'écosystème Innolab AI</div>
+  <h2 class="s-h">Au-delà de Luna Voice.<br/><em>La suite complète.</em></h2>
+  <p class="s-sub" style="margin-bottom:1rem">Nous accompagnons les professionnels de santé marocains avec une suite de solutions digitales — conçues pour simplifier la gestion et moderniser votre image.</p>
+  <div class="svc-list">
+    <div class="svc-row rv">
+      <div class="svc-left"><span class="svc-n">01</span><span class="svc-ico">🗂️</span></div>
+      <div><h3>Gestion numérique des dossiers patients</h3><p>Fini les classeurs qui débordent et les fiches perdues. Un système sécurisé qui centralise tous vos dossiers — accessible depuis n'importe quel appareil, à tout moment. Réduisez de 90% le temps passé à chercher des informations.</p></div>
+      <span class="svc-arr">↗</span>
+    </div>
+    <div class="svc-row rv d1">
+      <div class="svc-left"><span class="svc-n">02</span><span class="svc-ico">📊</span></div>
+      <div><h3>Tableaux de bord métier sur mesure</h3><p>Gérez votre cabinet comme une vraie entreprise. Stocks, personnel, ordonnances, finances — tout en un seul coup d'œil, mis à jour en temps réel.</p></div>
+      <span class="svc-arr">↗</span>
+    </div>
+    <div class="svc-row rv d2">
+      <div class="svc-left"><span class="svc-n">03</span><span class="svc-ico">💰</span></div>
+      <div><h3>Systèmes de facturation & paiements</h3><p>Facture générée à la confirmation du RDV. Paiement suivi automatiquement. Relance intelligente si impayé. Arrêtez de courir après votre argent — nous le faisons pour vous.</p></div>
+      <span class="svc-arr">↗</span>
+    </div>
+    <div class="svc-row rv">
+      <div class="svc-left"><span class="svc-n">04</span><span class="svc-ico">🌐</span></div>
+      <div><h3>Sites Web & Applications professionnels</h3><p>Votre prochain patient vous cherche sur Google — il vous trouve ? Nous créons des sites qui convertissent les visiteurs en patients, intégrés à Luna Voice, livrés en 7 à 14 jours.</p></div>
+      <span class="svc-arr">↗</span>
+    </div>
+    <div class="svc-row rv d1">
+      <div class="svc-left"><span class="svc-n">05</span><span class="svc-ico">📣</span></div>
+      <div><h3>Publicités & Marketing digital</h3><p>Campagnes Facebook, Instagram et Google ciblées sur vos patients locaux. Budget optimisé, résultats mesurables chaque semaine, rapport de performance transparent.</p></div>
+      <span class="svc-arr">↗</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PRICING ══ -->
+<section class="sec" id="pricing">
+  <div class="price-hd rv">
+    <div class="s-tag">Tarifs</div>
+    <h2 class="s-h">Transparent.<br /><em>Sans surprise.</em></h2>
+    <p class="s-sub">Une assistante à Casablanca coûte 4 000–6 000 MAD/mois — sans congés, sans erreurs, sans formation à recommencer. Luna coûte moins, fait plus, et ne part jamais.</p>
+  </div>
+
+  <div class="price-grid">
+    <div class="pc rv">
+      <span class="p-plan">Starter</span>
+      <div class="p-amt"><sup>€</sup>490<small>/mois</small></div>
+      <p class="p-desc">Pour les cabinets individuels qui débutent avec l'automatisation IA.</p>
+      <div class="p-div"></div>
+      <ul class="p-feats">
+        <li>Luna Voice 24/7 (appels & messages)</li>
+        <li>Jusqu'à 200 interactions/mois</li>
+        <li>Prise de RDV automatique</li>
+        <li>Rappels SMS & email (J-2, J-1, H-2)</li>
+        <li>Dashboard de suivi</li>
+        <li>Support email réactif</li>
+      </ul>
+      <a href="#contact" class="p-btn p-btn-o">Commencer →</a>
+    </div>
+
+    <div class="pc hot rv d1">
+      <span class="p-plan">Pro</span>
+      <div class="p-amt"><sup>€</sup>890<small>/mois</small></div>
+      <p class="p-desc">La solution complète pour maximiser votre ROI. Choisi par 80% de nos clients.</p>
+      <div class="p-div"></div>
+      <ul class="p-feats">
+        <li>Tout ce qui est dans Starter</li>
+        <li>Interactions illimitées</li>
+        <li>Réactivation anciens patients</li>
+        <li>Confirmation des paiements</li>
+        <li>Intégration CRM & calendrier</li>
+        <li>Rapports mensuels détaillés</li>
+        <li>Support prioritaire 7j/7</li>
+      </ul>
+      <a href="#contact" class="p-btn p-btn-s">Réserver une démo →</a>
+    </div>
+
+    <div class="pc rv d2">
+      <span class="p-plan">Enterprise</span>
+      <div class="p-amt" style="font-size:2rem;line-height:1.2">Sur<br/>mesure</div>
+      <p class="p-desc">Pour les groupes de cabinets et structures multi-sites.</p>
+      <div class="p-div"></div>
+      <ul class="p-feats">
+        <li>Tout ce qui est dans Pro</li>
+        <li>Multi-cabinets & multi-agents</li>
+        <li>Développement sur mesure</li>
+        <li>Manager de compte dédié</li>
+        <li>SLA garanti 99.9%</li>
+        <li>Formations équipe incluses</li>
+        <li>Intégration systèmes existants</li>
+      </ul>
+      <a href="#contact" class="p-btn p-btn-o">Nous contacter →</a>
+    </div>
+  </div>
+
+  <div class="g-band rv">
+    <span class="g-ico">🛡️</span>
+    <div>
+      <strong>Satisfait ou 100% remboursé — sans condition.</strong>
+      <p>Essayez Luna Voice 14 jours sans risque. Si vous ne voyez pas de résultats concrets sur votre cabinet, nous vous remboursons intégralement. Aucune carte bancaire requise pour la démo.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TESTIMONIALS ══ -->
+<section class="sec" id="testimonials">
+  <div style="margin-bottom:4rem" class="rv">
+    <div class="s-tag">Témoignages</div>
+    <h2 class="s-h">Ce que disent<br /><em>nos clients.</em></h2>
+  </div>
+
+  <div class="t-grid">
+    <div class="tc wide rv">
+      <div>
+        <div class="t-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <p class="t-q">"Luna a transformé notre cabinet. Nos rendez-vous ont augmenté de 40% en deux mois. Nos patients apprécient la réactivité — même à 22h un dimanche. Je n'aurais jamais pensé que l'IA pouvait remplacer une vraie assistante aussi bien."</p>
+      </div>
+      <div class="t-author">
+        <div class="t-av">👨‍⚕️</div>
+        <div>
+          <div class="t-name">Dr. Karim Benali</div>
+          <div class="t-role">Dentiste — Casablanca</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tc rv d1">
+      <div class="t-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <p class="t-q">"Résultats visibles en moins de 30 jours. Mon agenda est plein, je ne gère plus les appels moi-même. J'ai économisé l'équivalent de deux assistantes dès le premier mois."</p>
+      <div class="t-author">
+        <div class="t-av">👩‍⚕️</div>
+        <div>
+          <div class="t-name">Dr. Fatima Ouali</div>
+          <div class="t-role">Médecin généraliste — Rabat</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tc rv d2">
+      <div class="t-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <p class="t-q">"Mes patients préfèrent les réponses rapides aux réponses humaines tardives. Luna répond en 30 secondes — aucune assistante humaine ne peut faire ça à ce prix."</p>
+      <div class="t-author">
+        <div class="t-av">🧑‍⚕️</div>
+        <div>
+          <div class="t-name">Dr. Mehdi Chraibi</div>
+          <div class="t-role">Kinésithérapeute — Marrakech</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer ticker -->
+<div class="ft">
+  <div class="ft-t">
+    <span>Le prochain mouvement est le vôtre <em>✦</em></span>
+    <span>Nous gérons les réservations, vous soignez vos patients <em>✦</em></span>
+    <span>Zéro appel manqué — Zéro patient perdu <em>✦</em></span>
+    <span>Le prochain mouvement est le vôtre <em>✦</em></span>
+    <span>Nous gérons les réservations, vous soignez vos patients <em>✦</em></span>
+    <span>Zéro appel manqué — Zéro patient perdu <em>✦</em></span>
+  </div>
+</div>
+
+<!-- ══ CONTACT ══ -->
+<section class="sec" id="contact">
+  <div class="contact-wrap">
+    <div class="rv">
+      <div class="s-tag">Contact</div>
+      <h2 class="s-h">Trouvons votre<br /><em>plus grande victoire.</em></h2>
+      <p class="c-intro">Réservez une démo privée de 30 minutes et voyez Luna en action sur votre cas concret. Sans engagement, sans carte bancaire — juste des résultats.</p>
+      <div class="c-links">
+        <a href="tel:+212618134099" class="c-link">
+          <div class="c-ico">📞</div>
+          <div><div class="c-lbl">Téléphone</div><div class="c-val">+212 618 134 099</div></div>
+        </a>
+        <a href="mailto:hello@inlb.io" class="c-link">
+          <div class="c-ico">✉️</div>
+          <div><div class="c-lbl">Email</div><div class="c-val">hello@inlb.io</div></div>
+        </a>
+        <a href="https://www.inlb.io" target="_blank" class="c-link">
+          <div class="c-ico">🌐</div>
+          <div><div class="c-lbl">Site web</div><div class="c-val">www.inlb.io</div></div>
+        </a>
+      </div>
+      <div class="obj-box">
+        <p class="obj-t">Questions fréquentes</p>
+        <div class="obj-item">
+          <span class="obj-q">Et si l'IA fait des erreurs ?</span>
+          <span class="obj-a">Luna est formée spécifiquement pour les cabinets médicaux. En cas de situation complexe, elle vous transfère automatiquement l'appel en temps réel.</span>
+        </div>
+        <div class="obj-item">
+          <span class="obj-q">Mes patients préfèrent parler à un humain ?</span>
+          <span class="obj-a">Ils préfèrent surtout une réponse rapide. Luna répond en 30 secondes — votre assistante humaine, en combien de temps ?</span>
+        </div>
+        <div class="obj-item">
+          <span class="obj-q">C'est compliqué à mettre en place ?</span>
+          <span class="obj-a">Non. Notre équipe gère toute la configuration en 48h. Vous êtes formé en 30 minutes, et c'est tout.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-box rv d1">
+      <p class="form-ttl">Réservez votre démo</p>
+      <form onsubmit="handleSubmit(event)">
+        <div class="form-grid">
+          <div class="field"><label>Nom complet</label><input type="text" placeholder="Dr. Votre Nom" required/></div>
+          <div class="field"><label>Email</label><input type="email" placeholder="votre@email.com" required/></div>
+          <div class="field"><label>Téléphone</label><input type="tel" placeholder="+212 ..."/></div>
+          <div class="field"><label>Type de cabinet</label><input type="text" placeholder="Dentiste, Généraliste, Kiné..."/></div>
+          <div class="field full"><label>Votre plus grand défi en ce moment</label><textarea rows="4" placeholder="Ex: Je perds des patients le soir car personne ne répond aux appels..."></textarea></div>
+        </div>
+        <button type="submit" class="f-submit">Réserver ma démo gratuite →</button>
+        <div class="f-ok" id="formOk">✓ Reçu ! Nous vous contacterons sous 24h pour fixer votre démo.</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-in">
+    <a href="#" class="f-logo">Innolab <b>AI</b></a>
+    <div class="f-nav">
+      <a href="#features">Fonctionnalités</a>
+      <a href="#how">Processus</a>
+      <a href="#pricing">Tarifs</a>
+      <a href="#testimonials">Avis</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="f-contact">
+      <a href="tel:+212618134099">+212 618 134 099</a>
+      <span>·</span>
+      <a href="mailto:hello@inlb.io">hello@inlb.io</a>
+      <span>·</span>
+      <a href="https://www.inlb.io" target="_blank">www.inlb.io</a>
+    </div>
+    <p class="f-copy">© 2025 Innolab AI — Tous droits réservés</p>
+  </div>
+</footer>
+
+<script>
+// ── Cursor
+const C = document.getElementById('cur');
+const R = document.getElementById('cur-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX;my=e.clientY;
+  C.style.left=mx+'px';C.style.top=my+'px';
+});
+(function loop(){
+  rx+=(mx-rx)*.11;ry+=(my-ry)*.11;
+  R.style.left=rx+'px';R.style.top=ry+'px';
+  requestAnimationFrame(loop);
+})();
+document.querySelectorAll('a,button,input,textarea,.fc,.tc,.pc,.svc-row,.hs').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{C.classList.add('c-xl');R.classList.add('c-xl')});
+  el.addEventListener('mouseleave',()=>{C.classList.remove('c-xl');R.classList.remove('c-xl')});
+});
+
+// ── Nav
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('solid',scrollY>40),{passive:true});
+
+// ── Mobile nav
+const burger=document.getElementById('burger');
+burger.addEventListener('click',()=>{
+  nav.classList.toggle('open');
+  burger.textContent=nav.classList.contains('open')?'✕':'☰';
+});
+document.querySelectorAll('.n-links a').forEach(a=>a.addEventListener('click',()=>{
+  nav.classList.remove('open');burger.textContent='☰';
+}));
+
+// ── Scroll reveal
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+},{threshold:.07,rootMargin:'0px 0px -28px 0px'});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+
+// ── Form
+function handleSubmit(e){
+  e.preventDefault();
+  const btn=e.target.querySelector('.f-submit');
+  btn.textContent='Envoi en cours…';btn.disabled=true;
+  setTimeout(()=>{
+    btn.style.display='none';
+    document.getElementById('formOk').style.display='block';
+    e.target.reset();
+  },1400);
+}
+
+// ── Stagger grid items
+document.querySelectorAll('.feat-grid .fc').forEach((c,i)=>c.style.transitionDelay=i*.05+'s');
+document.querySelectorAll('.svc-row').forEach((r,i)=>r.style.transitionDelay=i*.07+'s');
+document.querySelectorAll('.t-grid .tc').forEach((t,i)=>t.style.transitionDelay=i*.08+'s');
+</script>
+</body>
+</html>
